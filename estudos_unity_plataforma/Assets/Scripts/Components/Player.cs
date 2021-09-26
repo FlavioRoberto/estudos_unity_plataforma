@@ -1,16 +1,15 @@
 using Assembly_CSharp.Assets.Scripts.Enums;
+using Assembly_CSharp.Assets.Scripts.Extensions;
 using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public class Player : MonoBehaviour
     {
-        public const string PLAYER_TRANSITION = "PlayerTransition";
         public float Speed = 1;
         public float JumpForce = 1;
         public Animator Animator;
         private Rigidbody2D _rigidBody;
-
         private int _countJump = 0;
 
         void Start()
@@ -22,6 +21,13 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             Move();
             Jump();
+            Down();
+        }
+
+        void OnCollisionEnter2D(Collision2D colisor)
+        {
+            if (colisor.gameObject.layer == ((int)ELayer.GROUND))
+                _countJump = 0;
         }
 
         private bool CanJump
@@ -45,44 +51,47 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             var movement = Input.GetAxis("Horizontal");
             _rigidBody.velocity = new Vector2(movement * Speed, _rigidBody.velocity.y);
 
-            if (movement > 0)
+            if (movement > 0 && InGround)
             {
-                SetMovePosition(0);
+                Animator.SetMovePosition(EMoveEagle.RIGHT);
                 return;
             }
 
-            if (movement < 0)
+            if (movement < 0 && InGround)
             {
-                SetMovePosition(180);
+                Animator.SetMovePosition(EMoveEagle.LEFT);
                 return;
             }
 
             if (InGround)
-                Animator.SetInteger(PLAYER_TRANSITION, (int)EAnimatorTransition.IDLE);
+                Animator.SetTransition(EPlayerTransition.IDLE);
+
         }
 
-        private void SetMovePosition(int eagles)
+        private void Down()
         {
-            Animator.SetInteger(PLAYER_TRANSITION, (int)EAnimatorTransition.RUN);
-            transform.eulerAngles = new Vector3(0, eagles, 0);
-        }
-
-        void OnCollisionEnter2D(Collision2D colisor)
-        {
-            if (colisor.gameObject.layer == ((int)ELayer.GROUND))
-                _countJump = 0;
+            var inDown =  _rigidBody.velocity.y < 0;
+            
+            if (inDown)
+                Animator.SetTransition(EPlayerTransition.DOWN);
         }
 
         private void Jump()
         {
-            if (CanJump)
-            {
-                Animator.SetInteger(PLAYER_TRANSITION, (int)EAnimatorTransition.JUMP);
-                _countJump += 1;
-                var velocity = _rigidBody.velocity;
-                var impulse = JumpForce + (velocity.y * -1);
-                _rigidBody.AddForce(Vector2.up * impulse, ForceMode2D.Impulse);
-            }
+            if (!CanJump)
+                return;
+
+            if (_countJump == 0)
+                Animator.SetTransition(EPlayerTransition.JUMP);
+            else
+                Animator.SetTransition(EPlayerTransition.DOUBLE_JUMP);
+
+            _countJump += 1;
+            var velocity = _rigidBody.velocity;
+            var impulse = JumpForce + (velocity.y * -1);
+            _rigidBody.AddForce(Vector2.up * impulse, ForceMode2D.Impulse);
+
         }
+
     }
 }
