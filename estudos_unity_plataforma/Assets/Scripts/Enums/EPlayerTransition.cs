@@ -6,6 +6,7 @@ namespace Assembly_CSharp.Assets.Scripts.Enums
         RUN = 1,
         JUMP = 2,
         DOUBLE_JUMP = 3,
-        DOWN = 4
+        DOWN = 4,
+        SWORD_ATTACK = 5
     }
 }
