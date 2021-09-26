@@ -1,0 +1,243 @@
+Using pre-set license
+Built from '2021.1/staging' branch; Version is '2021.1.13f1 (a03098edbbe0) revision 10498200'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home Single Language; OS build 19043.1263; Version 2009; 64bit' Language: 'pt' Physical Memory: 20355 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2021.1.13f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/Desenvolvimento/Unity/estudos_unity_plataforma/estudos_unity_plataforma
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+55572
+Successfully changed project path to: D:/Desenvolvimento/Unity/estudos_unity_plataforma/estudos_unity_plataforma
+D:/Desenvolvimento/Unity/estudos_unity_plataforma/estudos_unity_plataforma
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 138.70 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.1.13f1 (a03098edbbe0)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.1.13f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/Desenvolvimento/Unity/estudos_unity_plataforma/estudos_unity_plataforma/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 940MX (ID=0x134d)
+    Vendor:   NVIDIA
+    VRAM:     2010 MB
+    Driver:   30.0.14.7196
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.1.13f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.1.13f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.1.13f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56364
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.13f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.1.13f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
+Registered in 0.003244 seconds.
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 137.97 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  3.261 seconds
+Domain Reload Profiling:
+	ReloadAssembly (3262ms)
+		BeginReloadAssembly (80ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (2ms)
+		EndReloadAssembly (697ms)
+			LoadAssemblies (76ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (233ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (48ms)
+			SetupLoadedEditorAssemblies (348ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (138ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (148ms)
+				ProcessInitializeOnLoadMethodAttributes (43ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.009734 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image D:\Desenvolvimento\Unity\estudos_unity_plataforma\estudos_unity_plataforma\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\Desenvolvimento\Unity\estudos_unity_plataforma\estudos_unity_plataforma\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 143.72 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.879 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1879ms)
+		BeginReloadAssembly (210ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (26ms)
+		EndReloadAssembly (1588ms)
+			LoadAssemblies (145ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (514ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (92ms)
+			SetupLoadedEditorAssemblies (680ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (144ms)
+				BeforeProcessingInitializeOnLoad (134ms)
+				ProcessInitializeOnLoadAttributes (354ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
+				AfterProcessingInitializeOnLoad (10ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 1.09 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3668 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 137.7 MB.
+System memory in use after: 137.8 MB.
+
+Unloading 37 unused Assets to reduce memory usage. Loaded Objects now: 4112.
+Total: 3.949300 ms (FindLiveObjects: 0.532000 ms CreateObjectMapping: 0.306600 ms MarkObjects: 2.966100 ms  DeleteObjects: 0.143300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/tiles and background_foreground/waterfall_anim_strip_4.png
+  artifactKey: Guid(00a3b2ec22a64ec489bde228715c0fb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/waterfall_anim_strip_4.png using Guid(00a3b2ec22a64ec489bde228715c0fb1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90ab2ed7dfe91a815c5adf15f8aadec8') in 0.237206 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000333 seconds.
+  path: Assets/tiles and background_foreground/waterfall_bottom_anim_strip_4.png
+  artifactKey: Guid(cb7725e029b0aae4e9291d29499d7afb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/waterfall_bottom_anim_strip_4.png using Guid(cb7725e029b0aae4e9291d29499d7afb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dbade652ae0402b17ca6cec3a5314ba8') in 0.033828 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000342 seconds.
+  path: Assets/tiles and background_foreground
+  artifactKey: Guid(c7657cdfc87f45247b6b54ee697e11b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground using Guid(c7657cdfc87f45247b6b54ee697e11b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8a0f9aadb8ed66e997641b412c029ae') in 0.012685 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000428 seconds.
+  path: Assets/tiles and background_foreground/fg_0.png
+  artifactKey: Guid(dc9533ce82ec08148a7bc9b57cff97a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/fg_0.png using Guid(dc9533ce82ec08148a7bc9b57cff97a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e1adc5973e548616d5deb159354a582') in 0.057973 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000296 seconds.
+  path: Assets/tiles and background_foreground/bg_1.png
+  artifactKey: Guid(643b7520543963642a4b5557df2d70d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/bg_1.png using Guid(643b7520543963642a4b5557df2d70d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e32888a9f5b60fab682cfc2c356bbcce') in 0.043309 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000317 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7594137360d926c9f7908cfb9746e07a') in 0.038484 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000321 seconds.
+  path: Assets/tiles and background_foreground/waterfall_bottom_anim.gif
+  artifactKey: Guid(e9efb61cda7ad954e967f11005f2eeba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/waterfall_bottom_anim.gif using Guid(e9efb61cda7ad954e967f11005f2eeba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9692f708fc0b39eb64affb743523fbf') in 0.045247 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/tiles and background_foreground/bg_0.png
+  artifactKey: Guid(6e84de6f097537b4c86a8d95f3f284dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/bg_0.png using Guid(6e84de6f097537b4c86a8d95f3f284dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2907a07fd4ae09c43c6d273c6c99432') in 0.050043 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000894 seconds.
+  path: Assets/tiles and background_foreground/background.png
+  artifactKey: Guid(47a2e5afe1c72704daa3c5b4fe724f73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/background.png using Guid(47a2e5afe1c72704daa3c5b4fe724f73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c60a25e22efd600c4d22c1b2a3ce206') in 0.043125 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000430 seconds.
+  path: Assets/tiles and background_foreground/waterfall_anim.gif
+  artifactKey: Guid(c15f5a4a4d01a0e4f95434420c78c923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/waterfall_anim.gif using Guid(c15f5a4a4d01a0e4f95434420c78c923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e69b24d4fc167d8f5819cb9af34087c') in 0.031861 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/tiles and background_foreground/bg_2.png
+  artifactKey: Guid(e9db70a14c55ff646b53620f32bda9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/bg_2.png using Guid(e9db70a14c55ff646b53620f32bda9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4ee2fcdbfc9ed4829e2e845af46f3ad') in 0.046897 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.001738 seconds.
+  path: Assets/tiles and background_foreground/fg_1.png
+  artifactKey: Guid(0ad7d3b8d3781d34f9a9b6c5c95373cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/fg_1.png using Guid(0ad7d3b8d3781d34f9a9b6c5c95373cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad9f861ada78e3f77bbe278d9764a7fa') in 0.042232 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 85.957338 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5edc7618b3054c98ae885ffbf2c6ac67') in 0.025591 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 12.886586 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '700f6eb6d4e3266f309d479c07437435') in 0.025912 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 43.656343 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21ef2ee836ab25c769fc8e9e7206065a') in 0.026324 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.273409 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3756c4eab9ddde154b395a1886a972d4') in 0.042641 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 184.679519 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9246e25daf3f44f312cd4e304ee82629') in 0.278305 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.506004 seconds.
+  path: Assets/tiles and background_foreground/tileset.png
+  artifactKey: Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/tiles and background_foreground/tileset.png using Guid(f0520618797ae704da94c584156f018a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ae996e5928169020d3b4108de536a5c') in 0.158750 seconds 
