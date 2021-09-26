@@ -30,18 +30,23 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             Down();
         }
 
+
         void OnCollisionEnter2D(Collision2D colisor)
         {
             if (colisor.gameObject.layer == ((int)ELayer.GROUND))
-            {
-                _countJump = 0;
-                Debug.Log("Colidiu com chão: " + _countJump);
-            }
+                Reset();
         }
 
         void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);
+        }
+
+        private void Reset()
+        {
+            _countJump = 0;
+            isAttacking = false;
+            isMoving = false;
         }
 
         private bool CanJump
