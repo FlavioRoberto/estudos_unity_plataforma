@@ -51,7 +51,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             _animator.SetTrigger(ETrigger.DEAD);
             Speed = 0;
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, 0.5f);
         }
     }
 }
