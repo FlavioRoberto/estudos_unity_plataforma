@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using Assembly_CSharp.Assets.Scripts.Enums;
 using UnityEngine;
-
 namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public class Player : MonoBehaviour
@@ -11,8 +9,8 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public float JumpForce = 1;
         public Animator Animator;
         public Transform AttackPoint;
-        public float AttackRadius;
         private Rigidbody2D _rigidBody;
+        public float AttackRadius;
         private int _countJump = 0;
         private bool isAttacking = false;
         private bool isMoving = false;
@@ -29,14 +27,11 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             Jump();
             Down();
         }
-
-
         void OnCollisionEnter2D(Collision2D colisor)
         {
             if (colisor.gameObject.layer == ((int)ELayer.GROUND))
                 _countJump = 0;
         }
-
         void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);
