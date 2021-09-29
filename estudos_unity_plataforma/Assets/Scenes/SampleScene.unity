@@ -589,14 +589,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f92156a06c0ba0478eaed0f708213c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 3
+  Speed: 3
+  JumpForce: 10
+  AttackRadius: 0.2
+  Damage: 1
+  Animator: {fileID: 55093296}
+  AttackPoint: {fileID: 518784571}
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  Speed: 3
-  JumpForce: 10
-  Animator: {fileID: 55093296}
-  AttackPoint: {fileID: 518784571}
-  AttackRadius: 0.2
 --- !u!1 &802804449
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 2
+  Damage: 1
   Speed: -1
 --- !u!95 &802804455
 Animator:

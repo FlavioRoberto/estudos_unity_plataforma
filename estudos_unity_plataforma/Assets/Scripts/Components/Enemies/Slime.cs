@@ -23,6 +23,8 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void OnTriggerEnter2D(Collider2D colider)
         {
+            OnTriggerPlayer(colider);
+
             if (colider.gameObject.layer == (int)ELayer.WALL)
                 Speed = Speed * -1;
 

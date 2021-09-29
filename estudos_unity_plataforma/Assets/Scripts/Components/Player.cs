@@ -5,17 +5,19 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public class Player : MonoBehaviour
     {
-        public LayerMask EnemyLayer;
+        public float Health = 3;
         public float Speed = 1;
         public float JumpForce = 1;
-        public Animator Animator;
-        public Transform AttackPoint;
-        private Rigidbody2D _rigidBody;
         public float AttackRadius;
+        public float Damage = 1;
         private int _countJump = 0;
         private bool isAttacking = false;
         private bool isMoving = false;
+        public Animator Animator;
+        public Transform AttackPoint;
+        private Rigidbody2D _rigidBody;
         private EMoveEagle _playerDirection;
+        public LayerMask EnemyLayer;
 
         void Start()
         {
@@ -33,10 +35,20 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             if (colisor.gameObject.layer == ((int)ELayer.GROUND))
                 _countJump = 0;
+                
         }
         void OnDrawGizmos()
         {
             Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);
+        }
+
+        public void OnHit(float damage)
+        {
+            Animator.SetTrigger(ETrigger.HIT);
+            Health -= 1;
+
+            if (Health <= 0)
+                OnDead();
         }
 
         private bool CanJump
@@ -102,13 +114,19 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             if (hit == null)
                 return;
 
-            hit.GetComponent<Enemy>().OnHit(1, _playerDirection);
+            hit.GetComponent<Enemy>().OnHit(Damage, _playerDirection);
         }
 
         IEnumerator OnAttack()
         {
             yield return new WaitForSeconds(0.33f);
             isAttacking = false;
+        }
+
+        private void OnDead()
+        {
+            Speed = 0;
+            Animator.SetTrigger(ETrigger.DEAD);
         }
 
         private void Jump()
@@ -128,7 +146,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         }
 
-        public void SetMovePosition(EMoveEagle move)
+        private void SetMovePosition(EMoveEagle move)
         {
             isMoving = true;
             _playerDirection = move;
@@ -136,7 +154,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             SetTransition(EPlayerTransition.RUN);
         }
 
-        public void SetTransition(EPlayerTransition transition)
+        private void SetTransition(EPlayerTransition transition)
         {
             Animator.SetInteger("PlayerTransition", (int)transition);
         }
