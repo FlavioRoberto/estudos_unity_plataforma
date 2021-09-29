@@ -5,6 +5,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public class Player : MonoBehaviour
     {
+        public LayerMask EnemyLayer;
         public float Speed = 1;
         public float JumpForce = 1;
         public Animator Animator;
@@ -14,6 +15,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private int _countJump = 0;
         private bool isAttacking = false;
         private bool isMoving = false;
+        private EMoveEagle _playerDirection;
 
         void Start()
         {
@@ -93,13 +95,14 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
             isAttacking = true;
             SetTransition(EPlayerTransition.SWORD_ATTACK);
-            var hit = Physics2D.OverlapCircle(AttackPoint.position, AttackRadius);
+            var hit = Physics2D.OverlapCircle(AttackPoint.position, AttackRadius, EnemyLayer);
 
             StartCoroutine(OnAttack());
 
             if (hit == null)
                 return;
 
+            hit.GetComponent<Enemy>().OnHit(1, _playerDirection);
         }
 
         IEnumerator OnAttack()
@@ -128,6 +131,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public void SetMovePosition(EMoveEagle move)
         {
             isMoving = true;
+            _playerDirection = move;
             transform.eulerAngles = new Vector3(0, (int)move, 0);
             SetTransition(EPlayerTransition.RUN);
         }

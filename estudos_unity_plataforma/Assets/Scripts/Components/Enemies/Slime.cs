@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Components
 {
-    public class Slime : MonoBehaviour
+    public class Slime : Enemy
     {
         public float Speed;
+        private Animator _animator;
         private Rigidbody2D _rigidbody;
 
         void Start()
         {
+            _animator = GetComponent<Animator>();
             _rigidbody = GetComponent<Rigidbody2D>();
         }
 
@@ -22,14 +24,12 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         void OnTriggerEnter2D(Collider2D colider)
         {
             if (colider.gameObject.layer == (int)ELayer.WALL)
-            {
                 Speed = Speed * -1;
-            }
 
-            DefineDeirection();
+            DefineDirection();
         }
 
-        private void DefineDeirection()
+        private void DefineDirection()
         {
             if (Speed < 0)
                 transform.DefineDirectionRight();
@@ -37,5 +37,21 @@ namespace Assembly_CSharp.Assets.Scripts.Components
                 transform.DefineDirectionLeft();
         }
 
+        protected override void OnHitEnter(EMoveEagle direction)
+        {
+            if (direction == EMoveEagle.RIGHT)
+                _rigidbody.AddForce(Vector2.right * 1300, ForceMode2D.Force);
+            else
+                _rigidbody.AddForce(Vector2.left * 1300, ForceMode2D.Force);
+
+            _animator.SetTrigger(ETrigger.HIT);
+        }
+
+        protected override void OnDead()
+        {
+            _animator.SetTrigger(ETrigger.DEAD);
+            Speed = 0;
+            Destroy(gameObject, 1f);
+        }
     }
 }
