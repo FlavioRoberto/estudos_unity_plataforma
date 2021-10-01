@@ -5,11 +5,12 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public abstract class Enemy : MonoBehaviour
     {
-        protected abstract void OnHitEnter(EMoveEagle direction);
-        protected abstract void OnDead();
+        public float Speed;
         public float Health;
         public float Damage;
-
+        protected abstract void OnHitEnter(EMoveEagle direction);
+        protected abstract void OnDead();
+          
         public void OnHit(float damage, EMoveEagle direction)
         {
             OnHitEnter(direction);

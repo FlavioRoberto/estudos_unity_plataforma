@@ -4,6 +4,5 @@ namespace Assembly_CSharp.Assets.Scripts.Enums
     {
         GROUND = 3,
         WALL = 6,
-        ENEMY = 7
-    }
+        ENEMY = 7    }
 }

@@ -6,11 +6,10 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public class Slime : Enemy
     {
-        public float Speed;
         private Animator _animator;
         private Rigidbody2D _rigidbody;
 
-        void Start()
+        protected void Start()
         {
             _animator = GetComponent<Animator>();
             _rigidbody = GetComponent<Rigidbody2D>();
