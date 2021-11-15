@@ -11,8 +11,11 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public float JumpForce = 1;
         public float AttackRadius;
         public float Damage = 1;
+        public float RecoverTime = 1;
+        private float _recoverTime = 0;
         private int _countJump = 0;
         private bool isAttacking = false;
+        private bool isDead = false;
         private bool isMoving = false;
         public Animator Animator;
         public Transform AttackPoint;
@@ -45,8 +48,17 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         public void OnHit(float damage)
         {
-            Animator.SetTrigger(ETrigger.HIT);
-            Health -= 1;
+            if (isDead)
+                return;
+
+            _recoverTime -= Time.deltaTime;
+
+            if (_recoverTime <= 0)
+            {
+                Animator.SetTrigger(ETrigger.HIT);
+                Health -= damage;
+                _recoverTime = RecoverTime;
+            }
 
             if (Health <= 0)
                 OnDead();
@@ -128,6 +140,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             Speed = 0;
             Animator.SetTrigger(ETrigger.DEAD);
+            isDead = true;
         }
 
         private void Jump()

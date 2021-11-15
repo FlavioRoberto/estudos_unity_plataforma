@@ -65,27 +65,27 @@ namespace Assembly_CSharp.Assets.Scripts.Components
                 return;
 
             if (hit.transform.CompareTag(ETag.PLAYER))
-                OnSeeingPlayer(hit.transform.position);
+                OnSeeingPlayer(hit.transform);
             else
                 isSeeingPlayer = false;
         }
 
-        private void OnSeeingPlayer(Vector3 playerPosition)
+        private void OnSeeingPlayer(Transform playTransform)
         {
             isSeeingPlayer = true;
 
-            var playerDistance = Vector2.Distance(transform.position, playerPosition);
+            var playerDistance = Vector2.Distance(transform.position, playTransform.position);
 
             if (playerDistance <= AtackDistance)
-                Attack();
+                Attack(playTransform.GetComponent<Player>());
             else
                 isAttacking = false;
         }
 
-        private void Attack()
+        private void Attack(Player player)
         {
             isAttacking = true;
-                      
+            AttackPlayer(player);           
         }
 
 
