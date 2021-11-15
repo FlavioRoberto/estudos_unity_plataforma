@@ -594,6 +594,7 @@ MonoBehaviour:
   JumpForce: 10
   AttackRadius: 0.2
   Damage: 1
+  RecoverTime: 1.5
   Animator: {fileID: 55093296}
   AttackPoint: {fileID: 518784571}
   EnemyLayer:
@@ -8054,8 +8055,9 @@ MonoBehaviour:
   Health: 1
   Damage: 1
   DistanceDetection: 4
-  isRight: 1
+  isRight: 0
   PointVision: {fileID: 1708536932}
+  AtackDistance: 0.5
 --- !u!61 &1761199480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8183,7 +8185,7 @@ Transform:
   m_GameObject: {fileID: 1761199478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.06, y: -4.15, z: 0}
-  m_LocalScale: {x: 0.78857344, y: 0.78857344, z: 0.78857344}
+  m_LocalScale: {x: 0.7885734, y: 0.78857344, z: 0.78857344}
   m_Children:
   - {fileID: 1708536932}
   m_Father: {fileID: 0}
