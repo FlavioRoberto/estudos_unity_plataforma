@@ -5,12 +5,12 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 {
     public abstract class Enemy : MonoBehaviour
     {
-        public float Speed;
-        public float Health;
-        public float Damage;
+        public float Speed = 0;
+        public float Health = 0;
+        public float Damage = 0;
         protected abstract void OnHitEnter(EMoveEagle direction);
         protected abstract void OnDead();
-          
+
         public void OnHit(float damage, EMoveEagle direction)
         {
             OnHitEnter(direction);
@@ -20,14 +20,17 @@ namespace Assembly_CSharp.Assets.Scripts.Components
                 OnDead();
         }
 
-
         protected void OnTriggerPlayer(Collider2D colider)
         {
             var player = colider.GetComponent<Player>();
 
             if (player != null)
-                player.OnHit(Damage);
+                AttackPlayer(player);
+        }
 
+        protected void AttackPlayer(Player player)
+        {
+            player.OnHit(Damage);
         }
 
     }

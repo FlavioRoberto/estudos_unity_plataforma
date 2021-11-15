@@ -1,5 +1,6 @@
 using System.Collections;
 using Assembly_CSharp.Assets.Scripts.Enums;
+using Assembly_CSharp.Assets.Scripts.Extensions;
 using UnityEngine;
 namespace Assembly_CSharp.Assets.Scripts.Components
 {
@@ -35,7 +36,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             if (colisor.gameObject.layer == ((int)ELayer.GROUND))
                 _countJump = 0;
-                
+
         }
         void OnDrawGizmos()
         {
@@ -70,7 +71,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private void Move()
         {
             var movement = Input.GetAxis("Horizontal");
-            _rigidBody.velocity = new Vector2(movement * Speed, _rigidBody.velocity.y);
+            _rigidBody.DefineVelocityInX(movement * Speed);
 
             if (movement > 0 && InGround && !isAttacking)
             {

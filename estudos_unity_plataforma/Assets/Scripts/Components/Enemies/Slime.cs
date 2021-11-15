@@ -17,7 +17,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void FixedUpdate()
         {
-            _rigidbody.velocity = new Vector2(Speed, _rigidbody.velocity.y);
+            _rigidbody.DefineVelocityInX(Speed);
         }
 
         void OnTriggerEnter2D(Collider2D colider)
