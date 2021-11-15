@@ -1,3 +1,4 @@
+using System.Collections;
 using Assembly_CSharp.Assets.Scripts.Enums;
 using Assembly_CSharp.Assets.Scripts.Extensions;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public float AtackDistance = 0;
         private bool isSeeingPlayer = false;
         private bool isAttacking = false;
+        private bool gettingDamage = false;
         private Animator _animator;
         private Rigidbody2D _rigidbody;
         private Vector2 _direction
@@ -37,11 +39,16 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void Move()
         {
-            if (!isSeeingPlayer || isAttacking)
+            if (!isSeeingPlayer || isAttacking || gettingDamage)
             {
+                if (!isAttacking)
+                    SetTransition(EGoblinEnemyTransition.IDLE);
+
                 _rigidbody.StopVelocity();
                 return;
             }
+
+            SetTransition(EGoblinEnemyTransition.WALK);
 
             if (isRight)
                 _rigidbody.DefineVelocityInX(Speed);
@@ -85,7 +92,8 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private void Attack(Player player)
         {
             isAttacking = true;
-            AttackPlayer(player);           
+            SetTransition(EGoblinEnemyTransition.ATTACK);
+            AttackPlayer(player);
         }
 
 
@@ -96,11 +104,28 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         }
 
         protected override void OnDead()
-        {  
+        {
+            _animator.SetTrigger(ETrigger.DEAD);
+            Speed = 0;
+            Destroy(gameObject, 0.5f);
         }
 
-        protected override void OnHitEnter(EMoveEagle direction)
+        protected override void OnHitLeave(EMoveEagle direction)
         {
+            gettingDamage = true;
+            _animator.SetTrigger(ETrigger.HIT);
+            StartCoroutine(CountTimeHit());
+        }
+
+        IEnumerator CountTimeHit()
+        {
+            yield return new WaitForSeconds(0.5f);
+            gettingDamage = false;
+        }
+
+        private void SetTransition(EGoblinEnemyTransition transition)
+        {
+            _animator.SetInteger("Transition", (int)transition);
         }
     }
 }

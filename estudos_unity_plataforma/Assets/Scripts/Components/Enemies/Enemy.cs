@@ -8,16 +8,19 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public float Speed = 0;
         public float Health = 0;
         public float Damage = 0;
-        protected abstract void OnHitEnter(EMoveEagle direction);
+        protected abstract void OnHitLeave(EMoveEagle direction);
         protected abstract void OnDead();
 
         public void OnHit(float damage, EMoveEagle direction)
         {
-            OnHitEnter(direction);
             Health -= damage;
 
-            if (Health <= 0)
+            if (Health <= 0){
                 OnDead();
+                return;
+            }
+
+            OnHitLeave(direction);
         }
 
         protected void OnTriggerPlayer(Collider2D colider)

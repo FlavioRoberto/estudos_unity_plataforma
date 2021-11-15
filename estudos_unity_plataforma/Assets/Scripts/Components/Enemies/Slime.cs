@@ -38,7 +38,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
                 transform.DefineDirectionLeft();
         }
 
-        protected override void OnHitEnter(EMoveEagle direction)
+        protected override void OnHitLeave(EMoveEagle direction)
         {
             if (direction == EMoveEagle.RIGHT)
                 _rigidbody.AddForce(Vector2.right * 1300, ForceMode2D.Force);
