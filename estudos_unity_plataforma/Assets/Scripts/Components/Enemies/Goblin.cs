@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Assembly_CSharp.Assets.Scripts.Enums;
 using Assembly_CSharp.Assets.Scripts.Extensions;
@@ -9,11 +10,12 @@ namespace Assembly_CSharp.Assets.Scripts.Components
     {
         public float DistanceDetection = 1;
         public bool isRight = true;
-        public Transform PointVision;
         public float AtackDistance = 0;
         private bool isSeeingPlayer = false;
         private bool isAttacking = false;
         private bool gettingDamage = false;
+        public Transform PointVision;
+        public Transform Behind;
         private Animator _animator;
         private Rigidbody2D _rigidbody;
         private Vector2 _direction
@@ -24,6 +26,8 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             }
         }
 
+        private bool isStop { get { return !isSeeingPlayer || isAttacking || gettingDamage; } }
+
         protected void Start()
         {
             _animator = GetComponent<Animator>();
@@ -32,14 +36,14 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void FixedUpdate()
         {
-            SeePlayer();
             DefineDirection();
             Move();
+            SeePlayer();
         }
 
         void Move()
         {
-            if (!isSeeingPlayer || isAttacking || gettingDamage)
+            if (isStop)
             {
                 if (!isAttacking)
                     SetTransition(EGoblinEnemyTransition.IDLE);
@@ -53,7 +57,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             if (isRight)
                 _rigidbody.DefineVelocityInX(Speed);
             else
-                _rigidbody.DefineVelocityInX(Speed * -1);
+                _rigidbody.DefineVelocityInX(-Speed);
         }
 
         void DefineDirection()
@@ -66,15 +70,31 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void SeePlayer()
         {
-            var hit = Physics2D.Raycast(PointVision.position, _direction, DistanceDetection);
+            var isSeeingPlayerInFront = SeePlayer(Physics2D.Raycast(PointVision.position, _direction, DistanceDetection));
+            var isSeeingPlayerInBack = SeePlayer(Physics2D.Raycast(Behind.position, -_direction, DistanceDetection), () => isRight = !isRight);
 
+            if (!isSeeingPlayerInBack && !isSeeingPlayerInFront)
+            {
+                isSeeingPlayer = false;
+                isAttacking = false;
+            }
+        }
+
+        bool SeePlayer(RaycastHit2D hit, Action onSeePlayer = null)
+        {
             if (hit.collider == null)
-                return;
+                return false;
 
             if (hit.transform.CompareTag(ETag.PLAYER))
+            {
+                if (onSeePlayer != null)
+                    onSeePlayer();
+
                 OnSeeingPlayer(hit.transform);
-            else
-                isSeeingPlayer = false;
+                return true;
+            }
+
+            return false;
         }
 
         private void OnSeeingPlayer(Transform playTransform)
@@ -85,8 +105,6 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
             if (playerDistance <= AtackDistance)
                 Attack(playTransform.GetComponent<Player>());
-            else
-                isAttacking = false;
         }
 
         private void Attack(Player player)
@@ -95,7 +113,6 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             SetTransition(EGoblinEnemyTransition.ATTACK);
             AttackPlayer(player);
         }
-
 
         //show gizmos only if object selected in scene
         private void OnDrawGizmosSelected()
@@ -113,6 +130,12 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         protected override void OnHitLeave(EMoveEagle direction)
         {
             gettingDamage = true;
+
+            if (direction == EMoveEagle.RIGHT)
+                _rigidbody.AddForce(Vector2.right * 800, ForceMode2D.Force);
+            else
+                _rigidbody.AddForce(Vector2.left * 800, ForceMode2D.Force);
+
             _animator.SetTrigger(ETrigger.HIT);
             StartCoroutine(CountTimeHit());
         }
