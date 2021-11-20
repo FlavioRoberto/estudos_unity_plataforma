@@ -70,14 +70,11 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void SeePlayer()
         {
+            isAttacking = false;
+            isSeeingPlayer = false;
+
             var isSeeingPlayerInFront = SeePlayer(Physics2D.Raycast(PointVision.position, _direction, DistanceDetection));
             var isSeeingPlayerInBack = SeePlayer(Physics2D.Raycast(Behind.position, -_direction, DistanceDetection), () => isRight = !isRight);
-
-            if (!isSeeingPlayerInBack && !isSeeingPlayerInFront)
-            {
-                isSeeingPlayer = false;
-                isAttacking = false;
-            }
         }
 
         bool SeePlayer(RaycastHit2D hit, Action onSeePlayer = null)
