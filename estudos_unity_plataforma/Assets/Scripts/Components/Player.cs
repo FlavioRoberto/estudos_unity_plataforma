@@ -12,6 +12,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public float AttackRadius;
         public float Damage = 1;
         public float RecoverTime = 1;
+        public LayerMask EnemyLayer;
         private float _recoverTime = 0;
         private int _countJump = 0;
         private bool isAttacking = false;
@@ -21,7 +22,17 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         public Transform AttackPoint;
         private Rigidbody2D _rigidBody;
         private EMoveEagle _playerDirection;
-        public LayerMask EnemyLayer;
+        private static Player Instance;
+
+        void Awake()
+        {
+            DontDestroyOnLoad(this);
+
+            if (Instance == null)
+                Instance = this;
+            else
+                Destroy(gameObject);
+        }
 
         void Start()
         {

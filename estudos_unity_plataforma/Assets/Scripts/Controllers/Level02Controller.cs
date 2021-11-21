@@ -1,4 +1,6 @@
+using System.Linq;
 using Assembly_CSharp.Assets.Scripts.Components;
+using Assembly_CSharp.Assets.Scripts.Enums;
 using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Controller
@@ -7,9 +9,15 @@ namespace Assembly_CSharp.Assets.Scripts.Controller
     {
         public ButtonDoor ButtonDoor;
         public DoorBarrier DoorBarrier;
+        public Transform playerPosition;
 
         private void Start()
         {
+            var player = GameObject.FindGameObjectWithTag(ETag.PLAYER).transform;
+
+            if (player != null)
+                player.position = playerPosition.position;
+
             ButtonDoor.OnButtonPressed(DoorBarrier.Open);
             ButtonDoor.OnButtonUnpressed(DoorBarrier.Close);
         }
