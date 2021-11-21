@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +8,7 @@ namespace Assembly_CSharp.Assets.Scripts
     {
         public static GameController Instance { get; private set; }
         public int Score { get; private set; }
+        private int _currentLevel = 0;
 
         public Text scoreText;
 
@@ -27,6 +27,12 @@ namespace Assembly_CSharp.Assets.Scripts
         {
             var scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+        }
+
+        public void NextLevel()
+        {
+            _currentLevel++;
+            SceneManager.LoadScene(_currentLevel);
         }
     }
 }

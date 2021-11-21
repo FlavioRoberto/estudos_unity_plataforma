@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Controller
 {
-    public class SampleSceneController : MonoBehaviour
+    public class Level01Controller : MonoBehaviour
     {
         public ButtonDoor ButtonDoor;
         public DoorBarrier DoorBarrier;
