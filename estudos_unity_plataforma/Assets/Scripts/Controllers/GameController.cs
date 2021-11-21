@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Assembly_CSharp.Assets.Scripts
@@ -21,5 +23,10 @@ namespace Assembly_CSharp.Assets.Scripts
             scoreText.text = $"x {Score}";
         }
 
+        public void GameOver()
+        {
+            var scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 }

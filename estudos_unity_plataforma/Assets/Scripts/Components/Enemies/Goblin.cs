@@ -129,9 +129,9 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             gettingDamage = true;
 
             if (direction == EMoveEagle.RIGHT)
-                _rigidbody.AddForce(Vector2.right * 800, ForceMode2D.Force);
+                _rigidbody.AddForce(Vector2.right * (800 * _rigidbody.mass), ForceMode2D.Force);
             else
-                _rigidbody.AddForce(Vector2.left * 800, ForceMode2D.Force);
+                _rigidbody.AddForce(Vector2.left * (800 * _rigidbody.mass), ForceMode2D.Force);
 
             _animator.SetTrigger(ETrigger.HIT);
             StartCoroutine(CountTimeHit());

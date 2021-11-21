@@ -41,9 +41,9 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         protected override void OnHitLeave(EMoveEagle direction)
         {
             if (direction == EMoveEagle.RIGHT)
-                _rigidbody.AddForce(Vector2.right * 1300, ForceMode2D.Force);
+                _rigidbody.AddForce(Vector2.right * 300, ForceMode2D.Force);
             else
-                _rigidbody.AddForce(Vector2.left * 1300, ForceMode2D.Force);
+                _rigidbody.AddForce(Vector2.left * 300, ForceMode2D.Force);
 
             _animator.SetTrigger(ETrigger.HIT);
         }
