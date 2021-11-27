@@ -1,4 +1,5 @@
 using Assembly_CSharp.Assets.Scripts.Enums;
+using Assembly_CSharp.Assets.Scripts.Models;
 using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Components
@@ -25,13 +26,13 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         protected void OnTriggerPlayer(Collider2D colider)
         {
-            var player = colider.GetComponent<Player>();
+            var player = colider.GetComponent<PlayerComponent>();
 
             if (player != null)
                 AttackPlayer(player);
         }
 
-        protected void AttackPlayer(Player player)
+        protected void AttackPlayer(PlayerComponent player)
         {
             player.OnHit(Damage);
         }

@@ -49,6 +49,7 @@ namespace Assembly_CSharp.Assets.Scripts
         public void NextLevel()
         {
             _currentLevel++;
+            PlayerStorage.SaveLevel(_currentLevel);
             SceneManager.LoadScene(_currentLevel);
         }
 

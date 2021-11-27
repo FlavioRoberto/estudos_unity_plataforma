@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Assembly_CSharp.Assets.Scripts.Enums;
 using Assembly_CSharp.Assets.Scripts.Extensions;
+using Assembly_CSharp.Assets.Scripts.Models;
 using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Components
@@ -101,10 +102,10 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             var playerDistance = Vector2.Distance(transform.position, playTransform.position);
 
             if (playerDistance <= AtackDistance)
-                Attack(playTransform.GetComponent<Player>());
+                Attack(playTransform.GetComponent<PlayerComponent>());
         }
 
-        private void Attack(Player player)
+        private void Attack(PlayerComponent player)
         {
             isAttacking = true;
             SetTransition(EGoblinEnemyTransition.ATTACK);
