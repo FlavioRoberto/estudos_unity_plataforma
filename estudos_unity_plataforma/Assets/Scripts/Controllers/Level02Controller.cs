@@ -13,6 +13,8 @@ namespace Assembly_CSharp.Assets.Scripts.Controller
 
         private void Start()
         {
+            GameController.Instance.SetCheckPoint(playerPosition);
+
             var player = GameObject.FindGameObjectWithTag(ETag.PLAYER).transform;
 
             if (player != null)

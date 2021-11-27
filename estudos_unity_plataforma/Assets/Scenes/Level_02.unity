@@ -350,7 +350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101168546}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.51, y: -2.65, z: -6.1072264}
+  m_LocalPosition: {x: -0.94, y: -1.23, z: -6.1072264}
   m_LocalScale: {x: 1.3672755, y: 1.3672755, z: 1.3672755}
   m_Children:
   - {fileID: 1041601465}
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 245875077}
   m_Layer: 0
   m_Name: Waterfall
-  m_TagString: Untagged
+  m_TagString: Waterfall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1817,7 +1817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7418234108941154999, guid: 6db66dd5b762deb4f81c6393be58bd46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.936
+      value: -3.949
       objectReference: {fileID: 0}
     - target: {fileID: 7418234108941154999, guid: 6db66dd5b762deb4f81c6393be58bd46, type: 3}
       propertyPath: m_LocalPosition.z
