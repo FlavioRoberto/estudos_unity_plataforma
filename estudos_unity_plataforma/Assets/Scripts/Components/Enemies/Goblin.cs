@@ -16,9 +16,13 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private bool isAttacking = false;
         private bool gettingDamage = false;
         public Transform PointVision;
+        public AudioClip MoveSong;
+        public AudioClip DieSong;
+        public AudioClip DamageSong;
         public Transform Behind;
         private Animator _animator;
         private Rigidbody2D _rigidbody;
+        private AudioSource _audioSource;
         private Vector2 _direction
         {
             get
@@ -33,6 +37,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             _animator = GetComponent<Animator>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         void FixedUpdate()
@@ -99,6 +104,8 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             isSeeingPlayer = true;
 
+            PlaySong(MoveSong);
+
             var playerDistance = Vector2.Distance(transform.position, playTransform.position);
 
             if (playerDistance <= AtackDistance)
@@ -121,9 +128,11 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         protected override void OnDead()
         {
+            _audioSource.Stop();
+            PlaySong(DieSong);
             _animator.SetTrigger(ETrigger.DEAD);
             Speed = 0;
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, 2f);
         }
 
         protected override void OnHitLeave(EMoveEagle direction)
@@ -136,6 +145,8 @@ namespace Assembly_CSharp.Assets.Scripts.Components
                 _rigidbody.AddForce(Vector2.left * 800 * _rigidbody.mass, ForceMode2D.Force);
 
             _animator.SetTrigger(ETrigger.HIT);
+            _audioSource.Stop();
+            PlaySong(DamageSong);
             StartCoroutine(CountTimeHit());
         }
 
@@ -148,6 +159,14 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private void SetTransition(EGoblinEnemyTransition transition)
         {
             _animator.SetInteger("Transition", (int)transition);
+        }
+
+        private void PlaySong(AudioClip audio)
+        {
+            if (_audioSource.isPlaying)
+                return;
+
+            _audioSource.PlayOneShot(audio);
         }
     }
 }
