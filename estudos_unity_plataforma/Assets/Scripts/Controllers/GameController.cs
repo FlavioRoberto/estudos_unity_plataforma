@@ -17,12 +17,14 @@ namespace Assembly_CSharp.Assets.Scripts
         private void Awake()
         {
             Instance = this;
+            RecoverScore();
         }
 
         public void GetCoin()
         {
             Score++;
-            scoreText.text = $"x {Score}";
+            PrintScore();
+            PlayerStorage.SaveCoin(Score);
         }
 
         public void GameOver()
@@ -48,6 +50,17 @@ namespace Assembly_CSharp.Assets.Scripts
         {
             _currentLevel++;
             SceneManager.LoadScene(_currentLevel);
+        }
+
+        private void RecoverScore()
+        {
+            Score = PlayerStorage.GetCoins();
+            PrintScore();
+        }
+
+        private void PrintScore()
+        {
+            scoreText.text = $"x {Score}";
         }
     }
 }
