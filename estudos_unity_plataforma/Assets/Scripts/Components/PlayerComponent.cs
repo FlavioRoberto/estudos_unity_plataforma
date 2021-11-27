@@ -9,12 +9,13 @@ namespace Assembly_CSharp.Assets.Scripts.Components
     public class PlayerComponent : MonoBehaviour
     {
         public float AttackRadius = 1;
-        private Player Player;
         public AudioClip JumpSound;
         public AudioClip HitSound;
+        public AudioClip RunSound;
         public LayerMask EnemyLayer;
         public Animator Animator;
         public Transform AttackPoint;
+        private Player _player;
         private Rigidbody2D _rigidBody;
         private EMoveEagle _playerDirection;
         private AudioSource _audioSource;
@@ -22,8 +23,6 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void Awake()
         {
-            Player = new Player();
-
             DontDestroyOnLoad(this);
 
             if (Instance == null)
@@ -34,13 +33,14 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void Start()
         {
+            _player = GetComponent<Player>();
             _rigidBody = GetComponent<Rigidbody2D>();
             _audioSource = GetComponent<AudioSource>();
         }
 
         void Update()
         {
-            Player.DecreaseRecoverTime();
+            _player.DecreaseRecoverTime();
             OnDead();
             Attack();
             Move();
@@ -50,7 +50,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         void OnCollisionEnter2D(Collision2D colisor)
         {
             if (colisor.gameObject.layer == ((int)ELayer.GROUND))
-                Player.SetInGround();
+                _player.SetInGround();
 
         }
         void OnDrawGizmos()
@@ -68,37 +68,37 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
             Action deadAction = () => Animator.SetTrigger(ETrigger.DEAD);
 
-            Player.OnHit(damage, hitAction, deadAction);
+            _player.OnHit(damage, hitAction, deadAction);
         }
 
         private bool CanJump
         {
             get
             {
-                return Input.GetButtonDown("Jump") && Player.CanJump;
+                return Input.GetButtonDown("Jump") && _player.CanJump;
             }
         }
 
         private void Move()
         {
             var movement = Input.GetAxis("Horizontal");
-            _rigidBody.DefineVelocityInX(movement * Player.Speed);
+            _rigidBody.DefineVelocityInX(movement * _player.Speed);
 
-            if (movement > 0 && Player.InGround && !Player.isAttacking)
+            if (movement > 0 && _player.InGround && !_player.isAttacking)
             {
                 SetMovePosition(EMoveEagle.RIGHT);
                 return;
             }
 
-            if (movement < 0 && Player.InGround && !Player.isAttacking)
+            if (movement < 0 && _player.InGround && !_player.isAttacking)
             {
                 SetMovePosition(EMoveEagle.LEFT);
                 return;
             }
 
-            if (movement == 0 && Player.InGround && !Player.isAttacking)
+            if (movement == 0 && _player.InGround && !_player.isAttacking)
             {
-                Player.StopMove();
+                _player.StopMove();
                 SetTransition(EPlayerTransition.IDLE);
             }
 
@@ -106,7 +106,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         private void Down()
         {
-            var inDown = _rigidBody.velocity.y < 0 && !Player.isMoving;
+            var inDown = _rigidBody.velocity.y < 0 && !_player.isMoving;
 
             if (inDown)
                 SetTransition(EPlayerTransition.DOWN);
@@ -117,7 +117,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             if (!Input.GetButtonDown("Fire1"))
                 return;
 
-            Player.Attack();
+            _player.Attack();
             SetTransition(EPlayerTransition.SWORD_ATTACK);
             var hit = Physics2D.OverlapCircle(AttackPoint.position, AttackRadius, EnemyLayer);
 
@@ -126,13 +126,13 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             if (hit == null)
                 return;
 
-            hit.GetComponent<Enemy>().OnHit(Player.Damage, _playerDirection);
+            hit.GetComponent<Enemy>().OnHit(_player.Damage, _playerDirection);
         }
 
         IEnumerator OnAttack()
         {
             yield return new WaitForSeconds(0.33f);
-            Player.StopAttack();
+            _player.StopAttack();
         }
 
         private void Jump()
@@ -140,22 +140,26 @@ namespace Assembly_CSharp.Assets.Scripts.Components
             if (!CanJump)
                 return;
 
-            if (Player.CountJump == 0)
+            if (_player.CountJump == 0)
                 SetTransition(EPlayerTransition.JUMP);
             else
                 SetTransition(EPlayerTransition.DOUBLE_JUMP);
 
             _audioSource.PlayOneShot(JumpSound);
-            Player.Jump();
+            _player.Jump();
             var velocity = _rigidBody.velocity;
-            var impulse = Player.JumpForce + (velocity.y * -1);
+            var impulse = _player.JumpForce + (velocity.y * -1);
             _rigidBody.AddForce(Vector2.up * impulse, ForceMode2D.Impulse);
 
         }
 
         private void SetMovePosition(EMoveEagle move)
         {
-            Player.Move();
+            _player.Move();
+
+             if (!_audioSource.isPlaying)
+                _audioSource.PlayOneShot(RunSound);
+
             _playerDirection = move;
             transform.eulerAngles = new Vector3(0, (int)move, 0);
             SetTransition(EPlayerTransition.RUN);
@@ -168,7 +172,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         private void OnDead()
         {
-            if (Player.isDead)
+            if (_player.isDead)
                 Destroy(gameObject, 1f);
         }
 

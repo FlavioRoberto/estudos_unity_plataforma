@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assembly_CSharp.Assets.Scripts.Models
 {
-    public class Player
+    public class Player : MonoBehaviour
     {
         public float Health { get; private set; }
         public float Speed { get; private set; }
@@ -28,6 +28,10 @@ namespace Assembly_CSharp.Assets.Scripts.Models
             isAttacking = false;
             isDead = false;
             isMoving = false;
+        }
+
+        public void SetHealth(int health) {
+            Health = health;
         }
 
         public void DecreaseRecoverTime()

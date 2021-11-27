@@ -15,6 +15,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private bool isSeeingPlayer = false;
         private bool isAttacking = false;
         private bool gettingDamage = false;
+        private bool isDead = false;
         public Transform PointVision;
         public AudioClip MoveSong;
         public AudioClip DieSong;
@@ -42,6 +43,11 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         void FixedUpdate()
         {
+            if (isDead){
+                _rigidbody.StopVelocity();
+                return;
+            }
+
             DefineDirection();
             Move();
             SeePlayer();
@@ -128,6 +134,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
 
         protected override void OnDead()
         {
+            isDead = true;
             _audioSource.Stop();
             PlaySong(DieSong);
             _animator.SetTrigger(ETrigger.DEAD);

@@ -8,15 +8,19 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private Animator _animator;
         private Action _buttonPressed;
         private Action _buttonUnpressed;
+        private AudioSource _audioSource;
 
         void Start()
         {
             _animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         void OnTriggerEnter2D(Collider2D other)
         {
             _animator.SetBool("ButtonDoorPressed", true);
+
+            _audioSource.Play();
 
             if (_buttonPressed != null)
                 _buttonPressed();
