@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d20a62676af3240b53a2d052890709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRadius: 0.11
+  AttackRadius: 0.18
   JumpSound: {fileID: 8300000, guid: ece6d843f7cc9f742a5065cc219a1c56, type: 3}
   HitSound: {fileID: 8300000, guid: 46b23b2eb88a1b3438dce12e4a029651, type: 3}
   EnemyLayer:
