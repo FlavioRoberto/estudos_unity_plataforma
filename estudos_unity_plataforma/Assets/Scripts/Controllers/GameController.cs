@@ -10,7 +10,7 @@ namespace Assembly_CSharp.Assets.Scripts
         public static GameController Instance { get; private set; }
         public GameObject GameOverPanel;
         public int Score { get; private set; }
-        private int _currentLevel = 0;
+        private int _currentLevel;
         private Transform _checkpointPosition;
 
         public Text scoreText;
@@ -19,6 +19,7 @@ namespace Assembly_CSharp.Assets.Scripts
         {
             Instance = this;
             Time.timeScale = 1;
+            _currentLevel = PlayerStorage.GetLevel();
             RecoverScore();
         }
 
