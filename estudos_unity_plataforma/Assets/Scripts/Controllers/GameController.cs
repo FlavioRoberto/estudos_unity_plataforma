@@ -8,6 +8,7 @@ namespace Assembly_CSharp.Assets.Scripts
     public class GameController : MonoBehaviour
     {
         public static GameController Instance { get; private set; }
+        public GameObject GameOverPanel;
         public int Score { get; private set; }
         private int _currentLevel = 0;
         private Transform _checkpointPosition;
@@ -17,6 +18,7 @@ namespace Assembly_CSharp.Assets.Scripts
         private void Awake()
         {
             Instance = this;
+            Time.timeScale = 1;
             RecoverScore();
         }
 
@@ -28,6 +30,12 @@ namespace Assembly_CSharp.Assets.Scripts
         }
 
         public void GameOver()
+        {
+            Time.timeScale = 0;
+            GameOverPanel.SetActive(true);
+        }
+
+        public void RestartLevel()
         {
             var scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);

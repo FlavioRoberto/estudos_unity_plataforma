@@ -18,18 +18,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private Player _player;
         private Rigidbody2D _rigidBody;
         private EMoveEagle _playerDirection;
-        private AudioSource _audioSource;
-        private static PlayerComponent Instance;
-
-        void Awake()
-        {
-            DontDestroyOnLoad(this);
-
-            if (Instance == null)
-                Instance = this;
-            else
-                Destroy(gameObject);
-        }
+        private AudioSource _audioSource;     
 
         void Start()
         {
@@ -41,7 +30,6 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         void Update()
         {
             _player.DecreaseRecoverTime();
-            OnDead();
             Attack();
             Move();
             Jump();
@@ -66,7 +54,12 @@ namespace Assembly_CSharp.Assets.Scripts.Components
                 Animator.SetTrigger(ETrigger.HIT);
             };
 
-            Action deadAction = () => Animator.SetTrigger(ETrigger.DEAD);
+            Action deadAction = () =>
+            {
+                Animator.SetTrigger(ETrigger.DEAD);
+                Destroy(gameObject, 1f);
+                GameController.Instance.GameOver();
+            };
 
             _player.OnHit(damage, hitAction, deadAction);
         }
@@ -157,7 +150,7 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         {
             _player.Move();
 
-             if (!_audioSource.isPlaying)
+            if (!_audioSource.isPlaying)
                 _audioSource.PlayOneShot(RunSound);
 
             _playerDirection = move;
@@ -168,12 +161,6 @@ namespace Assembly_CSharp.Assets.Scripts.Components
         private void SetTransition(EPlayerTransition transition)
         {
             Animator.SetInteger("PlayerTransition", (int)transition);
-        }
-
-        private void OnDead()
-        {
-            if (_player.isDead)
-                Destroy(gameObject, 1f);
         }
 
     }
